@@ -11,35 +11,53 @@ const prisma = new PrismaClient();
 const app = express();
 app.use(express.json());
 
+// //댓글 목록 조회 GET
+// export const getArticleComments = asyncHandler(async (req, res) => {
+//   const { articleId } = req.params;
+//   const { cursor, limit = 10 } = req.query;
+
+//   const articleComments = await prisma.articleComment.findMany({
+//     where: { articleId },
+//     cursor: cursor ? { id: cursor } : undefined,
+//     skip: cursor ? 1 : 0,
+//     take: parseInt(limit),
+//     select: {
+//       id: true,
+//       content: true,
+//       createdAt: true,
+//     },
+//     orderBy: { createdAt: "desc" },
+//   });
+
+//   const nextCursor =
+//     articleComments.length === parseInt(limit)
+//       ? articleComments[articleComments.length - 1].id
+//       : null;
+
+//   res.send({ articleComments, nextCursor });
+// });
+
 //댓글 목록 조회 GET
 export const getArticleComments = asyncHandler(async (req, res) => {
-  const { articleId } = req.params;
-  const { cursor, limit = 10 } = req.query;
+  const { articleId } = req.query;
 
   const articleComments = await prisma.articleComment.findMany({
     where: { articleId },
-    cursor: cursor ? { id: cursor } : undefined,
-    skip: cursor ? 1 : 0,
-    take: parseInt(limit),
+    orderBy: {
+      createdAt: "desc",
+    },
     select: {
       id: true,
       content: true,
       createdAt: true,
     },
-    orderBy: { createdAt: "desc" },
   });
-
-  const nextCursor =
-    articleComments.length === parseInt(limit)
-      ? articleComments[articleComments.length - 1].id
-      : null;
-
-  res.send({ articleComments, nextCursor });
+  res.send(articleComments);
 });
 
 //댓글 등록 POST
 export const createArticleComment = asyncHandler(async (req, res) => {
-  const { articleId } = req.params;
+  const { articleId } = req.query;
   const { content } = req.body;
   assert(req.body, CreateArticleComment);
 

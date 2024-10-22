@@ -1,8 +1,8 @@
-GET http://localhost:3000/articleComments/b8f11e76-0a9e-4b3f-bccf-8d9b4fbf331e
+GET http://localhost:3000/articleComments?articleId=b8f11e76-0a9e-4b3f-bccf-8d9b4fbf331e
 
 ###
 
-POST http://localhost:3000/articleComments/b8f11e76-0a9e-4b3f-bccf-8d9b4fbf331e
+POST http://localhost:3000/articleComments?articleId=b8f11e76-0a9e-4b3f-bccf-8d9b4fbf331e
 Content-Type: application/json
 
 {
@@ -11,7 +11,7 @@ Content-Type: application/json
 
 ###
 
-PATCH http://localhost:3000/articleComments/1a3n1vv0-11c5-4d97-9019-9ebe3c4d1317
+PATCH http://localhost:3000/articleComments/8a7645ca-d3c5-494b-bcb5-5418663683b7?articleId=b8f11e76-0a9e-4b3f-bccf-8d9b4fbf331e
 Content-Type: application/json
 
 {
@@ -20,5 +20,5 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:3000/articleComments/1a3n1vv0-11c5-4d97-9019-9ebe3c4d1317
+DELETE http://localhost:3000/articleComments/8a7645ca-d3c5-494b-bcb5-5418663683b7?articleId=b8f11e76-0a9e-4b3f-bccf-8d9b4fbf331e
 

@@ -2,7 +2,7 @@ GET http://localhost:3000/articles/b8f11e76-0a9e-4b3f-bccf-8d9b4fbf331e
 
 ###
 
-GET http://localhost:3000/articles?offset=0&limit=10&order=recent
+GET http://localhost:3000/articles
 
 ###
 
@@ -10,13 +10,13 @@ POST http://localhost:3000/articles
 Content-Type: application/json
 
 {
-    "title": "첫댓글",
-    "content": "처음으로 댓글 달아봅니다."
+    "title": "판다마켓 테스트",
+    "content": "판다마켓 부시기"
 }
 
 ###
 
-PATCH http://localhost:3000/articles/b8f11e76-0a9e-4b3f-bccf-8d9b4fbf331e
+PATCH http://localhost:3000/articles/22111729-eaad-46e3-8298-be2cec93cfe9
 Content-Type: application/json
 
 {
@@ -26,4 +26,4 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:3000/articles/b8f11e76-0a9e-4b3f-bccf-8d9b4fbf331e
+DELETE http://localhost:3000/articles/52c467eb-df4d-4835-bdfa-c46ecacefb5d

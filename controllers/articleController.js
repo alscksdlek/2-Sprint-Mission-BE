@@ -21,6 +21,7 @@ export const getArticleById = asyncHandler(async (req, res) => {
       comments: {
         select: {
           content: true,
+          createdAt: true,
         },
       },
     },
@@ -29,41 +30,58 @@ export const getArticleById = asyncHandler(async (req, res) => {
   res.send(article);
 });
 
-//게시물 목록 조회 GET
+// //게시물 목록 조회 GET
+// export const getArticles = asyncHandler(async (req, res) => {
+//   const { offset = 0, limit = 10, order = "recent", search = "" } = req.query;
+
+//   let orderBy;
+//   switch (order) {
+//     case "recent":
+//       orderBy = { createdAt: "desc" };
+//       break;
+//     default:
+//       orderBy = { createdAt: "desc" };
+//   }
+
+//   const where = {
+//     OR: [
+//       {
+//         title: {
+//           contains: search,
+//           mode: "insensitive",
+//         },
+//       },
+//       {
+//         content: {
+//           contains: search,
+//           mode: "insensitive",
+//         },
+//       },
+//     ],
+//   };
+
+//   const articles = await prisma.article.findMany({
+//     where,
+//     orderBy,
+//     skip: parseInt(offset),
+//     take: parseInt(limit),
+//     select: {
+//       id: true,
+//       title: true,
+//       content: true,
+//       createdAt: true,
+//     },
+//   });
+
+//   res.send(articles);
+// });
+
+// 게시물 목록 조회 GET
 export const getArticles = asyncHandler(async (req, res) => {
-  const { offset = 0, limit = 10, order = "recent", search = "" } = req.query;
-
-  let orderBy;
-  switch (order) {
-    case "recent":
-      orderBy = { createdAt: "desc" };
-      break;
-    default:
-      orderBy = { createdAt: "desc" };
-  }
-
-  const where = {
-    OR: [
-      {
-        title: {
-          contains: search,
-          mode: "insensitive",
-        },
-      },
-      {
-        content: {
-          contains: search,
-          mode: "insensitive",
-        },
-      },
-    ],
-  };
-
   const articles = await prisma.article.findMany({
-    where,
-    orderBy,
-    skip: parseInt(offset),
-    take: parseInt(limit),
+    orderBy: {
+      createdAt: "desc",
+    },
     select: {
       id: true,
       title: true,
@@ -71,7 +89,6 @@ export const getArticles = asyncHandler(async (req, res) => {
       createdAt: true,
     },
   });
-
   res.send(articles);
 });
 

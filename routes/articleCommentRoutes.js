@@ -8,8 +8,8 @@ import {
 
 const router = express.Router();
 
-router.get("/:articleId", getArticleComments);
-router.post("/:articleId", createArticleComment);
+router.get("/", getArticleComments);
+router.post("/", createArticleComment);
 router.patch("/:id", updateArticleComment);
 router.delete("/:id", deleteArticleComment);
 
