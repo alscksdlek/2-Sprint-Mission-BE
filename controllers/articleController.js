@@ -92,6 +92,32 @@ export const getArticles = asyncHandler(async (req, res) => {
   res.send(articles);
 });
 
+//검색어에 따른 게시글 목록 조회 GET
+export const getSearchArticles = asyncHandler(async (req, res) => {
+  const { q = "" } = req.query;
+
+  const articles = await prisma.article.findMany({
+    where: q
+      ? {
+          title: {
+            contains: q,
+            mode: "insensitive",
+          },
+        }
+      : {},
+    orderBy: {
+      createdAt: "desc",
+    },
+    select: {
+      id: true,
+      title: true,
+      content: true,
+      createdAt: true,
+    },
+  });
+  res.send(articles);
+});
+
 //게시물 등록 POST
 export const createArticle = asyncHandler(async (req, res) => {
   assert(req.body, CreateArticle);

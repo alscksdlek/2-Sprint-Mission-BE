@@ -6,6 +6,10 @@ GET http://localhost:3000/articles
 
 ###
 
+GET http://localhost:3000/search?q=판다
+
+###
+
 POST http://localhost:3000/articles
 Content-Type: application/json
 
