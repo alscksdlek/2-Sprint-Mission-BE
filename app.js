@@ -8,7 +8,7 @@ import articleRoutes from "./routes/articleRoutes.js";
 import articleCommentRoutes from "./routes/articleCommentRoutes.js";
 
 const corsOptions = {
-  origin: ["http://localhost:3000", "https://sprint-panda.netlify.app"],
+  origin: ["*"],
 };
 
 const app = express();
