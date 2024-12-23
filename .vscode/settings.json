@@ -1,4 +1,6 @@
 {
   "cSpell.words": ["Codeit", "datasource", "dotenv", "nestjs", "trivago", "tseslint"],
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "typescript.preferences.importModuleSpecifierEnding": "js",
+  "javascript.preferences.importModuleSpecifierEnding": "js"
 }

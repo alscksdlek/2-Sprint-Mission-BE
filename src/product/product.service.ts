@@ -14,19 +14,19 @@ export class ProductService {
     return product;
   }
 
-  createProduct = async (data: CreateProduct): Promise<Product> => {
+  async createProduct(data: CreateProduct): Promise<Product> {
     return await this.productRepository.createProduct(data);
-  };
+  }
 
-  updateProduct = async (id: string, data: PatchProduct): Promise<Product> => {
+  async updateProduct(id: string, data: PatchProduct): Promise<Product> {
     const product = await this.productRepository.findProductById(id);
     if (!product) throw new ProductNotFoundException();
     return await this.productRepository.updateProduct(data, id);
-  };
+  }
 
-  deleteProduct = async (id: string): Promise<Product> => {
+  async deleteProduct(id: string): Promise<Product> {
     const product = await this.productRepository.findProductById(id);
     if (!product) throw new ProductNotFoundException();
     return await this.productRepository.deleteProduct(id);
-  };
+  }
 }

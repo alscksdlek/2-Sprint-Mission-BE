@@ -13,3 +13,8 @@ export function customHttpException(message: string, status: HttpStatus): Except
 
 export const BadRequestException: ExceptionConstructor = customHttpException(ExceptionMessages.BAD_REQUEST, HttpStatus.BAD_REQUEST);
 export const ProductNotFoundException: ExceptionConstructor = customHttpException(ExceptionMessages.PRODUCT_NOT_FOUND, HttpStatus.NOT_FOUND);
+export const UserExistsException: ExceptionConstructor = customHttpException(ExceptionMessages.USER_EXISTS, HttpStatus.CONFLICT);
+export const UserEmailNotFoundException: ExceptionConstructor = customHttpException(ExceptionMessages.EMAIL_NOT_FOUND, HttpStatus.NOT_FOUND);
+export const PasswordErrorException: ExceptionConstructor = customHttpException(ExceptionMessages.PASSWORD_ERROR, HttpStatus.BAD_REQUEST);
+export const NoEnvVariableException: ExceptionConstructor = customHttpException(ExceptionMessages.NO_ENV_VARIABLE, HttpStatus.INTERNAL_SERVER_ERROR);
+export const UnauthorizedException: ExceptionConstructor = customHttpException(ExceptionMessages.UNAUTHORIZED, HttpStatus.UNAUTHORIZED);

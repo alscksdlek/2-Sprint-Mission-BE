@@ -5,30 +5,34 @@ import type { CreateProduct, PatchProduct } from './product.type.js';
 
 @Injectable()
 export class ProductRepository {
-  constructor(private readonly prisma: PrismaService) {}
+  private readonly product;
+
+  constructor(private readonly prisma: PrismaService) {
+    this.product = prisma.product;
+  }
 
   async findProductById(id: string): Promise<Product | null> {
-    return await this.prisma.product.findUnique({
+    return await this.product.findUnique({
       where: { id },
     });
   }
 
-  createProduct = async (data: CreateProduct): Promise<Product> => {
-    return await this.prisma.product.create({
+  async createProduct(data: CreateProduct): Promise<Product> {
+    return await this.product.create({
       data,
     });
-  };
+  }
 
-  updateProduct = async (data: PatchProduct, id: string): Promise<Product> => {
-    return await this.prisma.product.update({
+  async updateProduct(data: PatchProduct, id: string): Promise<Product> {
+    return await this.product.update({
       where: { id },
       data,
     });
-  };
+  }
 
-  deleteProduct = async (id: string): Promise<Product> => {
-    return await this.prisma.product.delete({
+  async deleteProduct(id: string): Promise<Product> {
+    return await this.product.delete({
       where: { id },
     });
-  };
+  }
 }
