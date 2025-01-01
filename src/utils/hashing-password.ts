@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { PasswordErrorException } from 'common/exceptions/http-exception.js';
+import { PasswordErrorException } from '#common/exceptions/http-exception.js';
 
 export async function hashingPassword(password: string) {
   return await bcrypt.hash(password, 10);

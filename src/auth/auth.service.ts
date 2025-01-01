@@ -1,11 +1,11 @@
-import { CreateUser, FilterUser } from './auth.type';
-import { UserRepository } from '../user/user.repository.js';
 import { Injectable } from '@nestjs/common';
-import { hashingPassword, verifyPassword } from 'utils/hashing-password.js';
-import { UserExistsException, UserEmailNotFoundException, NoEnvVariableException, UnauthorizedException } from 'common/exceptions/http-exception.js';
-import { filterSensitiveUserData } from 'utils/filter-sensitive-user-data.js';
-import jwt from 'jsonwebtoken';
 import { ConfigService } from '@nestjs/config';
+import jwt from 'jsonwebtoken';
+import { NoEnvVariableException, UnauthorizedException, UserEmailNotFoundException, UserExistsException } from '#common/exceptions/http-exception.js';
+import { CreateUser, FilterUser } from '#auth/auth.type';
+import { UserRepository } from '#user/user.repository.js';
+import { filterSensitiveUserData } from '#utils/filter-sensitive-user-data.js';
+import { hashingPassword, verifyPassword } from '#utils/hashing-password.js';
 
 @Injectable()
 export class AuthService {

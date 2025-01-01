@@ -1,8 +1,8 @@
-import { ProductRepository } from './product.repository.js';
 import { Injectable } from '@nestjs/common';
-import { ProductNotFoundException } from '../common/exceptions/http-exception.js';
-import type { Product } from '@prisma/client';
-import type { CreateProduct, PatchProduct } from './product.type.js';
+import type { Product } from '@prisma/client'; //service에선 db에 관한걸 아예 몰라야 함, prisma에서 type 가져와서 사용하면 안됨? -> 도메인 모델 사용
+import { ProductNotFoundException } from '#common/exceptions/http-exception.js';
+import { ProductRepository } from '#product/product.repository.js';
+import type { CreateProduct, PatchProduct } from '#product/product.type.js';
 
 @Injectable()
 export class ProductService {

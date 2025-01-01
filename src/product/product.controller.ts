@@ -1,7 +1,7 @@
-import { ProductService } from './product.service.js';
 import { Controller, Get, Param, Post, Body, Patch, Delete, HttpCode } from '@nestjs/common';
-import type { InputCreateProductDTO, InputUpdateProductDTO } from './product.dto.js';
-import { UUIDPipe } from '../common/uuid.pipe.js';
+import { UUIDPipe } from '#common/uuid.pipe.js';
+import type { InputCreateProductDTO, InputUpdateProductDTO } from '#product/product.dto.js';
+import { ProductService } from '#product/product.service.js';
 @Controller('products')
 export class ProductController {
   constructor(private readonly productService: ProductService) {}

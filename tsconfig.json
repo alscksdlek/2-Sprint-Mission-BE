@@ -1,11 +1,19 @@
 {
   "compilerOptions": {
-    "module": "ESNext",
-    "target": "ES2021",
-    "baseUrl": "./src",
+    "module": "Node16",
+    "target": "esnext",
+    "moduleResolution": "node16",
+    "baseUrl": "./",
+    "paths": {
+      "#auth/*": ["./src/auth/*"],
+      "#common/*": ["./src/common/*"],
+      "#product/*": ["./src/product/*"],
+      "#user/*": ["./src/user/*"],
+      "#utils/*": ["./src/utils/*"],
+      "#prisma/*": ["./prisma/*"]
+    },
     "outDir": "./dist",
     "rootDir": "./",
-    "moduleResolution": "node",
     "lib": [],
 
     // strict

@@ -1,14 +1,12 @@
+import tsPlugin from '@typescript-eslint/eslint-plugin';
+import tsParser from '@typescript-eslint/parser';
+import importPlugin from 'eslint-plugin-import';
+import prettierPlugin from 'eslint-plugin-prettier';
+import globals from 'globals';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
-import globals from 'globals';
-import tsParser from '@typescript-eslint/parser';
-import tsPlugin from '@typescript-eslint/eslint-plugin';
-import prettierPlugin from 'eslint-plugin-prettier';
-import importPlugin from 'eslint-plugin-import';
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-
 export default [
   {
     files: ['**/*.{js,ts}'],
@@ -46,6 +44,26 @@ export default [
         {
           js: 'always',
           ts: 'always',
+        },
+      ],
+      'import/order': [
+        'warn',
+        {
+          groups: [
+            ['builtin', 'external'],
+            ['internal', 'parent', 'sibling', 'index'],
+          ],
+          pathGroups: [
+            { pattern: '#prisma/**', group: 'internal', position: 'before' },
+            { pattern: '#common/**', group: 'internal', position: 'before' },
+            { pattern: '#auth/**', group: 'internal', position: 'before' },
+            { pattern: '#user/**', group: 'internal', position: 'before' },
+            { pattern: '#product/**', group: 'internal', position: 'before' },
+            { pattern: '#utils/**', group: 'internal', position: 'before' },
+          ],
+          pathGroupsExcludedImportTypes: ['builtin'],
+          alphabetize: { order: 'asc', caseInsensitive: true },
+          'newlines-between': 'never',
         },
       ],
     },

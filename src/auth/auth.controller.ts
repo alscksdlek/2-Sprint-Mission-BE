@@ -1,6 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { AuthService } from './auth.service.js';
-import { InputCreateUserDTO, InputSignInDTO } from './auth.dto.js';
+import { AuthService } from '#auth/auth.service.js';
+import { InputCreateUserDTO, InputSignInDTO } from '#auth/auth.dto.js';
 
 @Controller('auth')
 export class AuthController {
@@ -21,14 +21,17 @@ export class AuthController {
     return { accessToken, refreshToken };
   }
 
-  // @Post('refresh')
-  // async refreshAccessToken(req: AuthRequest, res: Response) {
-  //   if (!req.auth || !req.auth.userId) {
-  //     throw new Error();
-  //   }
-  //   const { refreshToken } = req.cookies;
-  //   const { userId } = req.auth;
-  //   const accessToken = await this.authService.refreshToken(userId, refreshToken);
-  //   return res.json({ accessToken });
-  // }
+  @Post('token/refresh')
+  async refreshAccessToken(req: AuthRequest, res: Response) {
+    if (!req.auth || !req.auth.userId) {
+      throw new Error();
+    }
+    const { refreshToken } = req.cookies;
+    const { userId } = req.auth;
+    const accessToken = await this.authService.refreshToken(userId, refreshToken);
+    return res.json({ accessToken });
+  }
 }
+
+        verifyRefreshToken,
+        debugRefreshToken,
